@@ -29,7 +29,7 @@
 	<p class="note">{os.note}</p>
 	<dl>
 		<div>
-			<dt>Year</dt>
+			<dt>Born</dt>
 			<dd class="mono">{os.year}</dd>
 		</div>
 		<div>
@@ -63,9 +63,9 @@
 		display: grid;
 		align-content: start;
 		gap: 12px;
-		padding: 20px 20px 16px;
+		padding: 18px 18px 14px;
 		background: var(--surface);
-		border: 1px solid var(--line);
+		border: 3px solid var(--text);
 		border-radius: var(--r-label);
 		color: var(--text);
 		text-align: left;
@@ -76,7 +76,7 @@
 	}
 
 	.label.linked:hover {
-		border-color: var(--control-border);
+		background: var(--paper);
 	}
 
 	.label.linked:has(a:active) {
@@ -87,6 +87,15 @@
 		font-size: 22px;
 		font-weight: 700;
 		line-height: 1.2;
+	}
+
+	.name::after {
+		content: '';
+		display: block;
+		width: 32px;
+		height: 3px;
+		margin-top: 10px;
+		border-block: 1px solid var(--text);
 	}
 
 	.name a {
@@ -116,7 +125,10 @@
 
 	.note {
 		color: var(--muted);
-		font-size: 15px;
+		font-family: var(--font-serif);
+		font-size: 16px;
+		font-style: italic;
+		font-weight: 400;
 		line-height: 1.45;
 	}
 
