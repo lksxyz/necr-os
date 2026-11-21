@@ -86,6 +86,8 @@ Each line is the reason for one major decision (R-31).
 - RHYTHM 2: catalog rows share one label format on purpose, with the home page breaking the pattern once for the featured machine.
 - MOTION 1: hover and state changes only, plus the single boot moment, because powering on a machine is the one event worth animating.
 - Lucide icons on machine controls: every control on the machine page already has a text label, and the icon only helps the eye find it in a dense toolbar. Each glyph names its action (save, keyboard, monitor, hard drive), so relevance is literal. Icons never appear on the catalog, the home page, or labels.
+- GitHub and X marks in the footer: the owner asked for social links with icons. The marks are the services' own logos, so they name the destination; each link also carries an `aria-label`. They are the only icons outside the machine page.
+- Notice bar above the header: the owner wants visitors to report problems. It is a static line of text, not a moving marquee, because MOTION 1 allows no loops.
 
 ## Color
 
@@ -147,6 +149,10 @@ Rules:
 
 - Content sits in one centered column, at most 960px wide, the fixed-width shape of early CSS sites.
 - The site header and footer have no divider lines. Whitespace separates them from the content.
+- Every site page (not the machine page) starts with a full-width notice bar: `text` fill, `paper` text at 14px, centered on desktop and left-aligned below 560px. It holds one sentence that sends visitors to GitHub Issues.
+- The header nav holds Catalog, Help, and About. The footer holds the credit line, the GitHub and X links, and a second nav: About, Help, Privacy, Terms, Licenses.
+- Text pages (About, Help, Privacy, Terms, Licenses) use one prose column, at most 64ch wide, with Georgia `title` section headings. Privacy and Terms show their last-updated date in `muted` under the heading.
+- The licenses page lists machines and libraries in tables with dotted row rules, the same divider as the label. Below 560px each row stacks, and each value is prefixed with its column name in `muted`.
 - The home page has one focal point: a featured machine shown with its full label and its Boot action, under the line `Oldest in the catalog`. The owner picks the featured machine; until then it is the oldest machine in the catalog. Its Boot button links to `/os/{slug}?boot=1`, which opens the machine page and boots it right away.
 - Below the featured machine, a timeline lists every machine by year. It is one row on desktop, four columns below 900px, and a vertical list below 560px.
 - The catalog is a grid of labels sorted by year, oldest first: two columns on desktop, one below 900px. Labels share one size so years read as a timeline.
@@ -194,7 +200,7 @@ Form controls
 
 Focus
 
-- 2px solid `text` outline with a 2px offset on every focusable element. The outline is never removed.
+- 2px solid `text` outline with a 2px offset on every focusable element. The outline is never removed. On the notice bar the outline is `paper`.
 
 Emulator stage
 
@@ -267,6 +273,8 @@ Patterns
 - Disk light: `Disk`, and `Disk busy` while reading.
 - Empty catalog: `The catalog is empty. Add a machine to src/lib/os.ts and it shows up here.`
 - Catalog count: `9 machines, oldest first. Each one boots in its own page.`
+- Notice bar: `Found a problem with NecrOS? Open an issue on GitHub and say which machine and browser you used.`
+- Social links: `Fahmi Lukis on GitHub`, `Fahmi Lukis on X` (accessible names and tooltips).
 
 Words and patterns to avoid
 
@@ -292,6 +300,7 @@ Contrast ratios, computed from the tokens above:
 | stage-text on stage | 7.49:1 | AAA |
 | console text (`#e8e8e8`) on stage | 15.41:1 | AAA |
 | control-border on paper | 3.47:1 | Passes 3:1 for UI components |
+| paper on text (notice bar) | 14.31:1 | AAA |
 | amber on paper | 1.73:1 | Never used for text or meaning |
 | line on paper | 1.29:1 | Decorative dividers only |
 
