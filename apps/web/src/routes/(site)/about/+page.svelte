@@ -1,8 +1,13 @@
+<script lang="ts">
+	import { operator, repoUrl } from '#lib/site.ts';
+</script>
+
 <svelte:head>
 	<title>About | NecrOS</title>
+	<meta name="description" content="What NecrOS is, how the machines run, and who built it." />
 </svelte:head>
 
-<article>
+<article class="prose">
 	<h1>About NecrOS</h1>
 	<p>
 		NecrOS is a catalog of old operating systems that still boot. Each machine gets its own page at
@@ -15,33 +20,12 @@
 		machine downloads only what it reads.
 	</p>
 	<p>
-		Each label in the catalog lists the license of the system it describes. Images come from the v86
-		project's image collection.
+		Each label in the catalog lists the license of the system it describes. The
+		<a href="/licenses">licenses page</a> links to the source of every machine and every library the
+		site uses.
+	</p>
+	<p>
+		{operator} built NecrOS for the Kiroween 2026 hackathon. The source code is on
+		<a href={repoUrl}>GitHub</a> under the MIT license.
 	</p>
 </article>
-
-<style>
-	article {
-		display: grid;
-		gap: 20px;
-		max-width: 60ch;
-	}
-
-	h1 {
-		font-size: clamp(2.25rem, 5vw, 3.25rem);
-		font-weight: 700;
-		margin-bottom: 12px;
-	}
-
-	p {
-		font-size: 17px;
-		line-height: 1.6;
-	}
-
-	code {
-		background: var(--surface);
-		padding: 1px 5px;
-		border-radius: var(--r-badge);
-		font-size: 0.9em;
-	}
-</style>
