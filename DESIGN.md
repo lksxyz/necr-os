@@ -189,6 +189,7 @@ Preferences
 Form controls
 
 - Select and range inputs use the `control-border` border and the `control` radius.
+- The screen effect select drops the browser's native arrow for a 16px chevron in `muted`, which turns `text` on hover with the border. It is 44px tall, with the visible label `Screen effect` in `muted` to its left. Below 900px the label is visually hidden but stays the accessible name.
 - The volume slider uses `amber-ink` as its accent color.
 
 Focus
