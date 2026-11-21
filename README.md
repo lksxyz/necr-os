@@ -37,16 +37,22 @@ pnpm destroy
 
 The catalog, the home timeline, and the prerendered `/os/:slug` page pick it up from there.
 
+## Deployment
+
+Live site: https://necros.kuncen.workers.dev
+
+`pnpm deploy` asks for approval in a terminal. In a non-interactive shell, run `pnpm exec alchemy deploy --yes`. It deploys two Workers: `necros` (the static site) and `necros-relay`.
+
 ## Networking
 
-Machines with `network: true` (Linux 2.6, Linux 6.8) can open real TCP connections through the relay Worker. After deploying, set these in `apps/web/.env`:
+Machines with `network: true` (Linux 2.6, Linux 6.8) can open real TCP connections through the `necros-relay` Worker.
 
-```sh
-VITE_NET_RELAY=wss://<relay worker host>   # the relay URL from alchemy deploy, with wss://
-VITE_CORS_PROXY=<optional CORS proxy URL>
-```
+- The relay address is set once in `alchemy.run.ts` (`NET_RELAY`) and passed to the site build as `VITE_NET_RELAY`.
+- The relay only accepts connections from origins listed in `ALLOWED_ORIGINS` in `apps/relay/worker.ts`.
+- For `pnpm dev`, put `VITE_NET_RELAY=wss://necros-relay.kuncen.workers.dev` in `apps/web/.env`. `localhost:5173` is already allowed.
+- Optional: `VITE_CORS_PROXY` sets a CORS proxy for v86's fetch-based network.
 
-Add the deployed site origin to `ALLOWED_ORIGINS` in `apps/relay/worker.ts`. Without `VITE_NET_RELAY`, v86 falls back to its fetch-based network, which only handles HTTP.
+Without `VITE_NET_RELAY`, v86 falls back to its fetch-based network, which only handles HTTP.
 
 ## Kiroween 2026
 
