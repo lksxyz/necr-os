@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Type-check the web app after edits",
+      "description": "Runs svelte-check whenever the agent saves a Svelte, TypeScript, or CSS file in apps/web/src, so type and template errors surface on the edit that caused them.",
+      "trigger": "PostFileSave",
+      "matcher": "apps/web/src/.*\\.(svelte|ts|css)$",
+      "action": { "type": "command", "command": "pnpm --filter @hackathon/web check" },
+      "timeout": 180
+    }
+  ]
+}
