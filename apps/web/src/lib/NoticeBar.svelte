@@ -68,7 +68,7 @@
 	}
 
 	.msg {
-		font-size: 13px;
+		font-size: 14px;
 		line-height: 1.4;
 	}
 
@@ -87,7 +87,7 @@
 		border: 1px solid var(--paper);
 		border-radius: var(--r-control);
 		color: var(--paper);
-		font-size: 13px;
+		font-size: 14px;
 		font-weight: 600;
 		text-decoration: none;
 		white-space: nowrap;
