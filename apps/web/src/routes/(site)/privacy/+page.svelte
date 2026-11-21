@@ -21,12 +21,16 @@
 			Your screen effect choice, in local storage under the key <code class="mono">necros:effect</code>.
 		</li>
 		<li>
+			Whether you closed the notice bar at the top, under the key
+			<code class="mono">necros:notice:v1</code>.
+		</li>
+		<li>
 			Saved states, in the browser database <code class="mono">necros</code>. Each one holds a copy of a
 			machine's memory and disks, including anything you typed into it.
 		</li>
 	</ul>
 	<p>
-		Both are written only when you use those features, and neither is sent anywhere. To remove a
+		These are written only when you use those features, and none of them is sent anywhere. To remove a
 		saved state, press its delete button on the machine page. To remove everything, clear this
 		site's data in your browser settings.
 	</p>
