@@ -12,16 +12,17 @@
 
 <header class="head">
 	<h1>Catalog</h1>
-	<p>
+	<p class="keeper">
 		{byYear.length}
-		{byYear.length === 1 ? 'machine' : 'machines'}, oldest first. Each one boots in its own page.
+		{byYear.length === 1 ? 'machine rests' : 'machines rest'} here, oldest first. Each one wakes in its own
+		page.
 	</p>
 </header>
 
 {#if byYear.length === 0}
 	<div class="empty" role="status">
-		<p>The catalog is empty.</p>
-		<p>Add a machine to <code class="mono">src/lib/os.ts</code> and it shows up here.</p>
+		<p>The archive is empty.</p>
+		<p>Add a machine to <code class="mono">src/lib/os.ts</code> and it rests here.</p>
 	</div>
 {:else}
 	<ol class="grid">
