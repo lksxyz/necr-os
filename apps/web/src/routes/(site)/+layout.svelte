@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { issuesUrl, operator, socials } from '#lib/site.ts';
+	import NoticeBar from '#lib/NoticeBar.svelte';
+	import { operator, socials } from '#lib/site.ts';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
@@ -22,12 +23,7 @@
 	const isCurrent = (href: string) => page.url.pathname.startsWith(href);
 </script>
 
-<aside class="notice" aria-label="Site notice">
-	<p>
-		Found a problem with NecrOS? <a href={issuesUrl}>Open an issue on GitHub</a> and say which machine
-		and browser you used.
-	</p>
-</aside>
+<NoticeBar />
 
 <header class="bar">
 	<a class="wordmark" href="/">NecrOS</a>
@@ -67,29 +63,6 @@
 </footer>
 
 <style>
-	.notice {
-		background: var(--text);
-		color: var(--paper);
-	}
-
-	.notice p {
-		max-width: 960px;
-		margin: 0 auto;
-		padding: 12px 20px;
-		font-size: 14px;
-		line-height: 1.45;
-		text-align: center;
-	}
-
-	.notice a {
-		color: var(--paper);
-		font-weight: 600;
-	}
-
-	.notice a:focus-visible {
-		outline-color: var(--paper);
-	}
-
 	.bar,
 	main,
 	.foot {
@@ -208,10 +181,6 @@
 	}
 
 	@media (max-width: 560px) {
-		.notice p {
-			text-align: left;
-		}
-
 		.bar {
 			height: 56px;
 		}
