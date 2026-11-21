@@ -16,7 +16,7 @@ alchemy.run.ts    Cloudflare deployment: the static site and the relay Worker
 - `/` home page: the featured machine and a timeline of the catalog
 - `/os` catalog: every machine, oldest first
 - `/os/:slug` machine page: fills the window with no page scroll. `?boot=1` boots on load
-- `/about`
+- `/help`, `/about`, `/privacy`, `/terms`, `/licenses`
 
 ## Commands
 
@@ -33,7 +33,7 @@ pnpm destroy
 ## Adding a machine
 
 1. Put the disk image in `apps/web/static/images/`. Large hard disk images can be split into parts so a machine downloads only what it reads; set `partSize` on the `hda` entry.
-2. Add an entry to `osList` in `apps/web/src/lib/os.ts` with its year, maker, license, note, first-step hint, and boot config. Every value shown on its label comes from this entry.
+2. Add an entry to `osList` in `apps/web/src/lib/os.ts` with its year, maker, license, source URL, note, first-step hint, and boot config. Every value shown on its label comes from this entry.
 
 The catalog, the home timeline, and the prerendered `/os/:slug` page pick it up from there.
 
