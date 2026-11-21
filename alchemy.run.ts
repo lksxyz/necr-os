@@ -27,7 +27,7 @@ export default Alchemy.Stack(
 
     // Wisp relay: lets the emulated OS open real TCP connections.
     // Set VITE_NET_RELAY to this URL with wss:// instead of https://.
-    const relay = yield* Cloudflare.Worker("Relay", { main: "./relay/worker.ts" });
+    const relay = yield* Cloudflare.Worker("Relay", { main: "./apps/relay/worker.ts" });
 
     return { url: web.url, relay: relay.url };
   }),

@@ -7,7 +7,7 @@ Static SvelteKit site (prerendered, no API) in a pnpm monorepo, deployed to Clou
 ```
 apps/web          SvelteKit app (adapter-static, one HTML file per route)
 apps/web/static   v86 build files and the disk images in images/
-relay/worker.ts   Wisp relay Worker that gives networked machines real TCP connections
+apps/relay        Wisp relay Worker that gives networked machines real TCP connections
 alchemy.run.ts    Cloudflare deployment: the static site and the relay Worker
 ```
 
@@ -46,7 +46,7 @@ VITE_NET_RELAY=wss://<relay worker host>   # the relay URL from alchemy deploy, 
 VITE_CORS_PROXY=<optional CORS proxy URL>
 ```
 
-Add the deployed site origin to `ALLOWED_ORIGINS` in `relay/worker.ts`. Without `VITE_NET_RELAY`, v86 falls back to its fetch-based network, which only handles HTTP.
+Add the deployed site origin to `ALLOWED_ORIGINS` in `apps/relay/worker.ts`. Without `VITE_NET_RELAY`, v86 falls back to its fetch-based network, which only handles HTTP.
 
 ## Kiroween 2026
 
