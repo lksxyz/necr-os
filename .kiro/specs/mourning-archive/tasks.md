@@ -35,12 +35,12 @@
   - Confirm reduced motion lands on full opacity with no animation
   - _Requirements: 3.1, 3.2, 3.3, 3.4_
 
-- [ ] 5. Verify
+- [x] 5. Verify
   - [x] 5.1 Run `pnpm check` and `pnpm build`
     - _Requirements: 4.5_
   - [x] 5.2 Check contrast of every new pair with the antislop contrast script
     - _Requirements: 4.3_
   - [x] 5.3 Run the antislop Delivery Gate and record it in `delivery-gate.md`
     - _Requirements: 4.1, 4.2, 4.5_
-  - [ ] 5.4 Deploy with `pnpm exec alchemy deploy --yes`
+  - [x] 5.4 Deploy with `pnpm exec alchemy deploy --yes`
     - _Requirements: 4.5_
