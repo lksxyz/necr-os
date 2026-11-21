@@ -15,7 +15,7 @@ export default Alchemy.Stack(
       command: "pnpm --filter @hackathon/web build",
       outdir: "apps/web/build",
       memo: {
-        include: ["apps/web/**", "pnpm-lock.yaml"],
+        include: ["apps/web/**", "apps/web/.env", "pnpm-lock.yaml"],
       },
       dev: {
         command: "pnpm --filter @hackathon/web dev",
