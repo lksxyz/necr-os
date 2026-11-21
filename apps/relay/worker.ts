@@ -6,7 +6,7 @@ import { connect } from 'cloudflare:sockets';
 const ALLOWED_ORIGINS: string[] = [
 	'http://localhost:5173',
 	'http://localhost:4173',
-	'https://hackathon-web-live-lukisxyz-encfl2oibrk6gwn3.kuncen.workers.dev'
+	'https://necros.kuncen.workers.dev'
 ];
 const MAX_STREAMS = 16;
 const BUFFER = 128;
