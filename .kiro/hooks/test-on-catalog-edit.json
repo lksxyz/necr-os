@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Run catalog property tests after editing os.ts",
+      "description": "Runs the fast-check property tests whenever the agent saves os.ts or its tests, so a bad slug, year, source URL or image size is caught on the edit that introduced it.",
+      "trigger": "PostFileSave",
+      "matcher": "apps/web/src/lib/os(\\.test)?\\.ts$",
+      "action": { "type": "command", "command": "pnpm --filter @hackathon/web test" },
+      "timeout": 120
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "antislop-contrast": {
+      "command": "python3",
+      "args": [".kiro/skills/antislop-human/contrast-mcp.py"],
+      "disabled": false
+    }
+  }
+}

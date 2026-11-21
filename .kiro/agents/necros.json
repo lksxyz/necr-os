@@ -9,7 +9,7 @@
       { "capability": "fs_write", "match": ["apps/**", "DESIGN.md", "README.md", ".kiro/**"], "effect": "allow" },
       {
         "capability": "shell",
-        "match": ["pnpm check", "pnpm build", "pnpm --filter @hackathon/web *", "git status", "git diff *", "git log *"],
+        "match": ["pnpm check", "pnpm test", "pnpm build", "pnpm --filter @hackathon/web *", "git status", "git diff *", "git log *"],
         "effect": "allow"
       },
       { "capability": "shell", "match": ["rm -rf *", "sudo *", "git push --force*", "git reset --hard*"], "effect": "deny" }
