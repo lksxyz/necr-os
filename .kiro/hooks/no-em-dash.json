@@ -1,0 +1,12 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Block em dashes before finishing",
+      "description": "DESIGN.md and antislop R-02 ban the em dash in UI text and docs. When the agent tries to finish, this scans the site source and docs and sends it back to fix any it finds.",
+      "trigger": "Stop",
+      "action": { "type": "command", "command": "node .kiro/hooks/scripts/no-em-dash.mjs" },
+      "timeout": 30
+    }
+  ]
+}
