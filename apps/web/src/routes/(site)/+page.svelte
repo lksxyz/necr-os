@@ -19,9 +19,9 @@
 <section class="hero" aria-labelledby="hero-title">
 	<div class="intro">
 		<h1 id="hero-title">Dead operating systems, switched back on.</h1>
-		<p>
-			NecrOS keeps a catalog of old operating systems that still boot. Pick a machine and it runs
-			in this tab, with its own screen, sound and serial console.
+		<p class="keeper">
+			NecrOS keeps the operating systems the world buried. Pick one, and it wakes in this tab, with
+			its own screen, sound and serial console.
 		</p>
 		{#if byYear.length > 0}
 			<a class="all" href="/os">Browse all {byYear.length} machines</a>
@@ -30,7 +30,7 @@
 
 	{#if featured}
 		<div class="plinth">
-			<p class="kicker">Oldest in the catalog</p>
+			<p class="kicker keeper">The oldest grave in the archive</p>
 			<CollectionLabel os={featured} heading="h2">
 				{#snippet footer()}
 					<a class="btn btn-primary" href="/os/{featured.slug}?boot=1">Boot {featured.name}</a>
@@ -43,7 +43,7 @@
 {#if byYear.length > 0}
 	<section class="timeline" aria-labelledby="timeline-title">
 		<h2 id="timeline-title">
-			The catalog by year, <span class="mono">{first.year}</span> to <span class="mono">{last.year}</span>
+			Laid to rest, <span class="mono">{first.year}</span> to <span class="mono">{last.year}</span>
 		</h2>
 		<ol>
 			{#each byYear as os (os.slug)}
@@ -58,7 +58,7 @@
 	</section>
 {:else}
 	<section class="empty" role="status">
-		<p>The catalog is empty. Add a machine to <code class="mono">src/lib/os.ts</code> and it shows up here.</p>
+		<p>The archive is empty. Add a machine to <code class="mono">src/lib/os.ts</code> and it rests here.</p>
 	</section>
 {/if}
 
@@ -105,8 +105,7 @@
 
 	.kicker {
 		color: var(--muted);
-		font-size: 14px;
-		font-weight: 500;
+		font-size: 16px;
 	}
 
 	.timeline {
