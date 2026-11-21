@@ -154,7 +154,8 @@ Format, top to bottom:
 Rules:
 
 - Every value comes from `os.ts`. Nothing on a label is invented. A field with no data is left out, not filled with a placeholder.
-- The label is a `surface` card with the `label` radius and a mourning edge: a 3px `text` border on all four sides, the black border of Victorian mourning stationery. The name sits above a short cross-ruled divider (a 1px `text` rule, 32px wide, with a 1px gap and a second rule below it), the double rule used on memorial cards. Field rows are separated by 1px dotted `control-border` rules, the era's divider.
+- The label is a `surface` card with the `label` radius and a mourning edge: a 3px `text` border on all four sides, the black border of Victorian mourning stationery. When a label links to a machine, hover turns its fill `paper` (the edge stays black) and pressing it turns the fill `line`. The name sits above a short cross-ruled divider (a 1px `text` rule, 32px wide, with a 1px gap and a second rule below it), the double rule used on memorial cards. Field rows are separated by 1px dotted `control-border` rules, the era's divider.
+- The epitaph is 16px Georgia italic, the `body` size, so the italic stays readable.
 - The Year field is labelled `Born`, because the year in `os.ts` is the release year. There is no death date: `os.ts` does not record when each system stopped being maintained, and the label never invents one.
 - The candle: on the machine page before boot, the Boot button is the label's only lit element. Nothing else on the label uses amber.
 - The Type value is the only badge on the site. CLI is `amber` text on `text` fill; Desktop is `text` on `amber` fill. Both are 8.28:1.
@@ -163,7 +164,7 @@ Rules:
 
 - Content sits in one centered column, at most 960px wide, the fixed-width shape of early CSS sites.
 - The site header and footer have no divider lines. Whitespace separates them from the content.
-- Every site page (not the machine page) starts with a full-width notice bar, 44px tall, with `text` fill and `paper` text at 13px. It holds three parts:
+- Every site page (not the machine page) starts with a full-width notice bar, 44px tall, with `text` fill and `paper` text at 14px (the `small` size; nothing interactive goes below it). It holds three parts:
   1. The message. Desktop: `Found a problem with NecrOS? Tell us which machine and browser you used.` Below 560px: `Found a problem?`
   2. The action: an outline button with a `paper` border, the 16px GitHub mark, and `Open an issue`. It opens a new issue on GitHub in a new tab. Hover fills it `paper` with `text` label. The visible box is 28px tall; its hit area spans the full 44px of the bar.
   3. A 44px close button with an X icon and the accessible name `Close notice`, pinned to the right edge.
@@ -296,7 +297,7 @@ Keeper lines (the full set; add new ones here before using them)
 | Home featured line | `The oldest grave in the archive` |
 | Home timeline heading | `Laid to rest, {first year} to {last year}` |
 | Catalog intro | `{n} machines rest here, oldest first. Each one wakes in its own page.` |
-| Machine page overlay, above the label before boot | `{machine name} is resting. Boot it to bring it back.` |
+| Machine page overlay, above the label before boot | `{machine name} is resting. Boot it to bring it back.` Shown only while powered off, in `stage-text` on `stage` (7.49:1), centered. |
 | 404 heading | `This grave is empty.` with body `The address may have a typo, or the machine was moved. The catalog lists every machine that rests here.` |
 | Footer credit | `NecrOS, kept by Fahmi Lukis.` |
 | Empty catalog | `The archive is empty. Add a machine to src/lib/os.ts and it rests here.` |
