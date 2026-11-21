@@ -226,3 +226,9 @@ input:disabled,
 	border-radius: var(--r-badge);
 	font-size: 0.9em;
 }
+
+.keeper {
+	font-family: var(--font-serif);
+	font-style: italic;
+	font-weight: 400;
+}
