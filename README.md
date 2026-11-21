@@ -58,7 +58,22 @@ Without `VITE_NET_RELAY`, v86 falls back to its fetch-based network, which only 
 
 Submitted to the Resurrection category: dead operating systems, booted again in a modern browser.
 
-Kiro usage lives in [`.kiro/`](.kiro): steering files for the product rules, the tech stack, and the design direction, which point Kiro at `DESIGN.md` and the antislop skills for every UI change.
+### How Kiro is used
+
+Everything Kiro used to build NecrOS is committed in [`.kiro/`](.kiro):
+
+| Path | What it does |
+|---|---|
+| `.kiro/steering/product.md`, `tech.md` | Always loaded. The product rules (machine facts only from `os.ts`, the no-scroll machine page) and the stack (Svelte 5 runes, `#lib/*.ts` imports, deploy command, no lint) |
+| `.kiro/steering/design.md` | Loaded only when a file under `apps/web/src` is in play. Pulls in `DESIGN.md` with a file reference and requires the antislop skills |
+| `.kiro/skills/` | The [antislop](https://github.com/miqdadbadjuber/anti-slop) skills (MIT), vendored so anyone who clones the repo gets the same UI rules and contrast checker |
+| `.kiro/hooks/check-on-save.json` | After the agent saves a file in `apps/web/src`, runs svelte-check so errors show up on the edit that caused them |
+| `.kiro/hooks/no-em-dash.json` | When the agent tries to finish, scans the source and docs and sends it back if an em dash slipped in |
+| `.kiro/hooks/deploy-guard.json` | Blocks the plain pnpm deploy script, which hangs on an approval prompt in an agent shell, and points the agent to `pnpm exec alchemy deploy --yes` |
+| `.kiro/agents/necros.json` | A custom agent for Kiro CLI with the steering, `DESIGN.md`, and skills preloaded, and shell permissions limited to check, build, and read-only git |
+| `.kiro/specs/mourning-archive/` | Requirements (EARS), design, and tasks for the spooky redesign described in `DESIGN.md` |
+
+Run the agent with `kiro-cli chat --agent necros`.
 
 ## Pre-existing work and third-party code
 
