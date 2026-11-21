@@ -42,7 +42,7 @@
 
 <footer class="foot">
 	<div class="foot-top">
-		<p>NecrOS, a personal project by {operator}. Emulation by <a href="https://github.com/copy/v86">v86</a>.</p>
+		<p>NecrOS, kept by {operator}. Emulation by <a href="https://github.com/copy/v86">v86</a>.</p>
 		<ul class="socials">
 			{#each socials as social (social.href)}
 				<li>
