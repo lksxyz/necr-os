@@ -60,16 +60,16 @@
 		flex-wrap: wrap;
 		align-items: center;
 		justify-content: center;
-		gap: 8px 16px;
+		gap: 8px 12px;
 		max-width: 960px;
-		min-height: 52px;
+		min-height: 44px;
 		margin: 0 auto;
-		padding: 4px 56px;
+		padding: 0 48px;
 	}
 
 	.msg {
-		font-size: 14px;
-		line-height: 1.45;
+		font-size: 13px;
+		line-height: 1.4;
 	}
 
 	.short {
@@ -82,12 +82,12 @@
 		align-items: center;
 		gap: 8px;
 		flex: none;
-		min-height: 32px;
-		padding: 0 12px;
+		min-height: 28px;
+		padding: 0 10px;
 		border: 1px solid var(--paper);
 		border-radius: var(--r-control);
 		color: var(--paper);
-		font-size: 14px;
+		font-size: 13px;
 		font-weight: 600;
 		text-decoration: none;
 		white-space: nowrap;
@@ -99,7 +99,7 @@
 	.action::before {
 		content: '';
 		position: absolute;
-		inset: -6px 0;
+		inset: -8px 0;
 	}
 
 	.action:hover {
@@ -114,8 +114,8 @@
 
 	.close {
 		position: absolute;
-		top: 4px;
-		right: 4px;
+		top: 0;
+		right: 0;
 		display: inline-grid;
 		place-items: center;
 		width: 44px;
@@ -143,8 +143,8 @@
 	@media (max-width: 560px) {
 		.in {
 			justify-content: flex-start;
-			gap: 8px 12px;
-			padding: 4px 52px 4px 20px;
+			gap: 4px 12px;
+			padding: 0 48px 0 16px;
 		}
 
 		.long {

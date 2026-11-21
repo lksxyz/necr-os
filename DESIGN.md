@@ -150,9 +150,9 @@ Rules:
 
 - Content sits in one centered column, at most 960px wide, the fixed-width shape of early CSS sites.
 - The site header and footer have no divider lines. Whitespace separates them from the content.
-- Every site page (not the machine page) starts with a full-width notice bar, at least 52px tall, with `text` fill and `paper` text at 14px. It holds three parts:
+- Every site page (not the machine page) starts with a full-width notice bar, 44px tall, with `text` fill and `paper` text at 13px. It holds three parts:
   1. The message. Desktop: `Found a problem with NecrOS? Tell us which machine and browser you used.` Below 560px: `Found a problem?`
-  2. The action: an outline button with a `paper` border, the 16px GitHub mark, and `Open an issue`. It opens a new issue on GitHub in a new tab. Hover fills it `paper` with `text` label. The visible box is 32px tall; its hit area extends to 44px.
+  2. The action: an outline button with a `paper` border, the 16px GitHub mark, and `Open an issue`. It opens a new issue on GitHub in a new tab. Hover fills it `paper` with `text` label. The visible box is 28px tall; its hit area spans the full 44px of the bar.
   3. A 44px close button with an X icon and the accessible name `Close notice`, pinned to the right edge.
 - Closing the notice stores `necros:notice:v1` in local storage, and an inline script in `app.html` hides the bar before first paint on later visits, so the page never jumps. Changing the notice text means bumping the key version.
 - The header nav holds Catalog, Help, and About. The footer holds the credit line, the GitHub and X links, and a second nav: About, Help, Privacy, Terms, Licenses.
