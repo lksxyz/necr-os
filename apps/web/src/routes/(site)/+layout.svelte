@@ -1,20 +1,39 @@
 <script lang="ts">
 	import { page } from '$app/state';
+	import { issuesUrl, operator, socials } from '#lib/site.ts';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
 
 	const links = [
 		{ href: '/os', label: 'Catalog' },
+		{ href: '/help', label: 'Help' },
 		{ href: '/about', label: 'About' }
 	];
+
+	const footerLinks = [
+		{ href: '/about', label: 'About' },
+		{ href: '/help', label: 'Help' },
+		{ href: '/privacy', label: 'Privacy' },
+		{ href: '/terms', label: 'Terms' },
+		{ href: '/licenses', label: 'Licenses' }
+	];
+
+	const isCurrent = (href: string) => page.url.pathname.startsWith(href);
 </script>
+
+<aside class="notice" aria-label="Site notice">
+	<p>
+		Found a problem with NecrOS? <a href={issuesUrl}>Open an issue on GitHub</a> and say which machine
+		and browser you used.
+	</p>
+</aside>
 
 <header class="bar">
 	<a class="wordmark" href="/">NecrOS</a>
 	<nav aria-label="Main">
 		{#each links as link (link.href)}
-			<a href={link.href} aria-current={page.url.pathname.startsWith(link.href) ? 'page' : undefined}>
+			<a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>
 				{link.label}
 			</a>
 		{/each}
@@ -26,11 +45,51 @@
 </main>
 
 <footer class="foot">
-	<p>NecrOS, a personal project.</p>
-	<p>Emulation by <a href="https://github.com/copy/v86">v86</a>.</p>
+	<div class="foot-top">
+		<p>NecrOS, a personal project by {operator}. Emulation by <a href="https://github.com/copy/v86">v86</a>.</p>
+		<ul class="socials">
+			{#each socials as social (social.href)}
+				<li>
+					<a href={social.href} aria-label={social.label} title={social.label}>
+						<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+							<path d={social.path} fill="currentColor" />
+						</svg>
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</div>
+	<nav aria-label="Site">
+		{#each footerLinks as link (link.href)}
+			<a href={link.href} aria-current={isCurrent(link.href) ? 'page' : undefined}>{link.label}</a>
+		{/each}
+	</nav>
 </footer>
 
 <style>
+	.notice {
+		background: var(--text);
+		color: var(--paper);
+	}
+
+	.notice p {
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 12px 20px;
+		font-size: 14px;
+		line-height: 1.45;
+		text-align: center;
+	}
+
+	.notice a {
+		color: var(--paper);
+		font-weight: 600;
+	}
+
+	.notice a:focus-visible {
+		outline-color: var(--paper);
+	}
+
 	.bar,
 	main,
 	.foot {
@@ -94,26 +153,75 @@
 	}
 
 	.foot {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		gap: 8px 24px;
+		display: grid;
+		gap: 8px;
 		padding-block: 24px 32px;
 		color: var(--muted);
 		font-size: 14px;
 	}
 
-	.foot a {
+	.foot-top {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px 24px;
+	}
+
+	.foot-top a {
 		color: var(--text);
 	}
 
+	.foot nav {
+		flex-wrap: wrap;
+		margin-left: -12px;
+	}
+
+	.foot nav a {
+		font-size: 14px;
+	}
+
+	.socials {
+		display: flex;
+		gap: 4px;
+		margin: 0 -12px 0 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.socials a {
+		display: inline-grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		border-radius: var(--r-control);
+		color: var(--muted);
+		transition: color var(--fast) var(--ease);
+	}
+
+	.socials a:hover {
+		color: var(--text);
+	}
+
+	.socials a:active {
+		background: var(--surface);
+	}
+
 	@media (max-width: 560px) {
+		.notice p {
+			text-align: left;
+		}
+
 		.bar {
 			height: 56px;
 		}
 
 		nav a {
 			padding: 0 10px;
+		}
+
+		.foot nav {
+			margin-left: -10px;
 		}
 
 		main {
