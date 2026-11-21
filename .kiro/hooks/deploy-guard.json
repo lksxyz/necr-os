@@ -1,0 +1,13 @@
+{
+  "version": "v1",
+  "hooks": [
+    {
+      "name": "Use the non-interactive deploy",
+      "description": "pnpm deploy waits for an approval prompt that a non-interactive shell cannot answer, and passing --yes through pnpm does not reach Alchemy. This blocks the call and tells the agent to run pnpm exec alchemy deploy --yes instead.",
+      "trigger": "PreToolUse",
+      "matcher": "shell",
+      "action": { "type": "command", "command": "node .kiro/hooks/scripts/deploy-guard.mjs" },
+      "timeout": 10
+    }
+  ]
+}
