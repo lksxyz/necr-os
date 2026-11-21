@@ -21,6 +21,7 @@
 	import Volume2 from '@lucide/svelte/icons/volume-2';
 	import VolumeX from '@lucide/svelte/icons/volume-x';
 	import Eraser from '@lucide/svelte/icons/eraser';
+	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 
 	let { data }: PageProps = $props();
 	let os = $derived(data.os);
@@ -198,12 +199,15 @@
 			<div class="sound">
 				{#if effectsAvailable}
 					<label class="effect">
-						<span class="sr">Screen effect</span>
-						<select value={screenEffect} onchange={(e) => chooseEffect(e.currentTarget.value)}>
-							{#each screenEffects as fx (fx.id)}
-								<option value={fx.id}>{fx.label}</option>
-							{/each}
-						</select>
+						<span class="effect-name">Screen effect</span>
+						<span class="field">
+							<select value={screenEffect} onchange={(e) => chooseEffect(e.currentTarget.value)}>
+								{#each screenEffects as fx (fx.id)}
+									<option value={fx.id}>{fx.label}</option>
+								{/each}
+							</select>
+							<ChevronDown class="chevron" size={16} aria-hidden="true" />
+						</span>
 					</label>
 				{/if}
 				{#if hasDrive}
@@ -467,19 +471,66 @@
 		box-shadow: inset 0 0 0 1px var(--amber-ink);
 	}
 
-	.effect select {
+	.effect {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
 		min-height: 44px;
-		padding: 0 8px;
+	}
+
+	.effect-name {
+		color: var(--muted);
+		font-size: 14px;
+		font-weight: 500;
+		white-space: nowrap;
+	}
+
+	.field {
+		position: relative;
+		display: inline-grid;
+		align-items: center;
+	}
+
+	.field select {
+		appearance: none;
+		min-height: 44px;
+		padding: 0 32px 0 12px;
 		border: 1px solid var(--control-border);
 		border-radius: var(--r-control);
 		background: var(--paper);
 		color: var(--text);
 		font: inherit;
 		font-size: 14px;
+		font-weight: 500;
+		line-height: 1.2;
+		transition:
+			border-color var(--fast) var(--ease),
+			background-color var(--fast) var(--ease);
 	}
 
-	.effect select:hover {
+	.field select:hover {
 		border-color: var(--text);
+	}
+
+	.field select:active {
+		background: var(--surface);
+	}
+
+	.field select:focus-visible {
+		outline: 2px solid var(--text);
+		outline-offset: 2px;
+	}
+
+	.field :global(.chevron) {
+		position: absolute;
+		right: 10px;
+		color: var(--muted);
+		pointer-events: none;
+		transition: color var(--fast) var(--ease);
+	}
+
+	.field:hover :global(.chevron) {
+		color: var(--text);
 	}
 
 	.volume {
@@ -568,6 +619,17 @@
 		background: var(--paper);
 		color: var(--muted);
 		font-size: 14px;
+	}
+
+	@media (max-width: 900px) {
+		.effect-name {
+			position: absolute;
+			width: 1px;
+			height: 1px;
+			overflow: hidden;
+			clip-path: inset(50%);
+			white-space: nowrap;
+		}
 	}
 
 	@media (max-width: 560px) {
