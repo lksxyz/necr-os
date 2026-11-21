@@ -343,6 +343,9 @@
 	{#if phase !== 'running'}
 		<div class="overlay">
 			<div class="plinth">
+				{#if phase === 'idle'}
+					<p class="resting keeper">{os.name} is resting. Boot it to bring it back.</p>
+				{/if}
 				<CollectionLabel {os} heading="h2">
 					{#snippet footer()}
 						{#if phase === 'idle'}
@@ -393,7 +396,22 @@
 	.screen.live {
 		visibility: visible;
 		opacity: 1;
-		transition: opacity var(--boot) var(--ease);
+		animation: wake var(--boot) var(--ease) 1 both;
+	}
+
+	@keyframes wake {
+		0% {
+			opacity: 0;
+		}
+		45% {
+			opacity: 0.85;
+		}
+		65% {
+			opacity: 0.55;
+		}
+		100% {
+			opacity: 1;
+		}
 	}
 
 	.screen > :global(div) {
@@ -428,7 +446,15 @@
 	}
 
 	.plinth {
+		display: grid;
+		gap: 12px;
 		width: min(420px, 100%);
+	}
+
+	.resting {
+		color: var(--stage-text);
+		font-size: 16px;
+		text-align: center;
 	}
 
 	.meter {
