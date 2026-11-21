@@ -10,10 +10,10 @@
 
 <main class="error">
 	<p class="code mono">{page.status}</p>
-	<h1>{notFound ? 'This machine is not in the catalog.' : 'This page stopped while loading.'}</h1>
-	<p class="msg">
+	<h1>{notFound ? 'This grave is empty.' : 'This page stopped while loading.'}</h1>
+	<p class="msg keeper">
 		{notFound
-			? 'Check the address, or pick a machine from the catalog.'
+			? 'The address may have a typo, or the machine was moved. The catalog lists every machine that rests here.'
 			: `${(page.error?.message ?? 'The page could not load').replace(/\.$/, '')}. Reload the page to try again.`}
 	</p>
 	<a class="btn btn-outline" href="/os">Open the catalog</a>
