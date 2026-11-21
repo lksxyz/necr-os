@@ -1,0 +1,23 @@
+{
+  "name": "necros",
+  "description": "NecrOS developer: builds the SvelteKit site and relay Worker, held to DESIGN.md and the antislop skills.",
+  "prompt": "You work on NecrOS, a catalog of old operating systems that boot in the browser. Follow the steering files. For any UI change, read DESIGN.md first, apply the antislop skills, and report the antislop Delivery Gate before you finish. Every fact about a machine comes from apps/web/src/lib/os.ts; never invent years, makers, licenses, sizes, or statistics. Validate with pnpm check and pnpm build. Deploy with pnpm exec alchemy deploy --yes. Never run lint.",
+  "welcomeMessage": "NecrOS agent ready. Steering, DESIGN.md, and the antislop skills are loaded.",
+  "tools": ["read", "write", "shell"],
+  "permissions": {
+    "rules": [
+      { "capability": "fs_write", "match": ["apps/**", "DESIGN.md", "README.md", ".kiro/**"], "effect": "allow" },
+      {
+        "capability": "shell",
+        "match": ["pnpm check", "pnpm build", "pnpm --filter @hackathon/web *", "git status", "git diff *", "git log *"],
+        "effect": "allow"
+      },
+      { "capability": "shell", "match": ["rm -rf *", "sudo *", "git push --force*", "git reset --hard*"], "effect": "deny" }
+    ]
+  },
+  "resources": [
+    "file://.kiro/steering/**/*.md",
+    "file://DESIGN.md",
+    "skill://.kiro/skills/**/SKILL.md"
+  ]
+}
