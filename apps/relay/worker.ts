@@ -5,8 +5,8 @@ import { connect } from 'cloudflare:sockets';
 
 const ALLOWED_ORIGINS: string[] = [
 	'http://localhost:5173',
-	'http://localhost:4173'
-	// Add your deployed site origin here, for example 'https://hackathon.example.workers.dev'.
+	'http://localhost:4173',
+	'https://hackathon-web-live-lukisxyz-encfl2oibrk6gwn3.kuncen.workers.dev'
 ];
 const MAX_STREAMS = 16;
 const BUFFER = 128;
