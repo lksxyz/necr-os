@@ -56,6 +56,9 @@ export default {
 
 		const pair = new WebSocketPair();
 		const [client, server] = [pair[0], pair[1]];
+		// Workers with a compatibility date on or after 2026-03-17 deliver binary
+		// frames as Blob, which the `instanceof ArrayBuffer` check below would drop.
+		server.binaryType = 'arraybuffer';
 		server.accept();
 		const streams = new Map<number, Stream>();
 
