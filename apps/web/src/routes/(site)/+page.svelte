@@ -122,8 +122,8 @@
 		margin: 0;
 		padding: 0;
 		display: grid;
-		grid-auto-columns: minmax(0, 1fr);
-		grid-auto-flow: column;
+		grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+		row-gap: 20px;
 	}
 
 	li {
@@ -191,12 +191,6 @@
 		.hero {
 			grid-template-columns: minmax(0, 1fr);
 			padding-block: 8px 64px;
-		}
-
-		ol {
-			grid-auto-flow: row;
-			grid-template-columns: repeat(4, minmax(0, 1fr));
-			row-gap: 20px;
 		}
 	}
 

@@ -173,7 +173,7 @@ Rules:
 - Text pages (About, Help, Privacy, Terms, Licenses) use one prose column, at most 64ch wide, with Georgia `title` section headings. Privacy and Terms show their last-updated date in `muted` under the heading.
 - The licenses page lists machines and libraries in tables with dotted row rules, the same divider as the label. Below 560px each row stacks, and each value is prefixed with its column name in `muted`.
 - The home page has one focal point: a featured machine shown with its full label and its Boot action, under the line `The oldest grave in the archive`. The owner picks the featured machine; until then it is the oldest machine in the catalog. Its Boot button links to `/os/{slug}?boot=1`, which opens the machine page and boots it right away.
-- Below the featured machine, a timeline lists every machine by year. It is one row on desktop, four columns below 900px, and a vertical list below 560px.
+- Below the featured machine, a timeline lists every machine by year. It wraps into rows of as many year columns as fit (ten at the 960px content width), and becomes a vertical list below 560px.
 - The catalog is a grid of labels sorted by year, oldest first: two columns on desktop, one below 900px. Labels share one size so the rows read like a row of headstones, and years read as a timeline. The page heading stays `Catalog` (it is navigation); the intro under it carries the theme.
 - The machine page fills the window with no page scroll. It has four rows:
   1. Header: the back link, the compressed label, the running controls (Send Ctrl+Alt+Del, Fullscreen, Restart), and the state.
