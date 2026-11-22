@@ -54,10 +54,29 @@
 	</ul>
 
 	<h2>Network</h2>
+	<p>Linux 2.6 and Linux 6.8 can reach the internet. On Linux 6.8:</p>
+	<ul>
+		<li>
+			Log in as <code class="mono">root</code>, no password. The shell runs on the serial console.
+		</li>
+		<li>
+			Run <code class="mono">udhcpc -i eth0</code>. The emulator's own DHCP server answers with
+			192.168.86.100; DNS is 192.168.86.1. <code class="mono">ip a show eth0</code> shows the
+			address.
+		</li>
+		<li>
+			Fetch a page with plain HTTP:
+			<code class="mono">wget -O - http://httpbin.org/robots.txt</code>. The image's BusyBox has no
+			TLS, so <code class="mono">https://</code> URLs fail.
+		</li>
+		<li>
+			<code class="mono">/mnt</code> is a 9p share mounted read-write. This site has no file
+			transfer controls, so it stays empty.
+		</li>
+	</ul>
 	<p>
-		Linux 2.6 and Linux 6.8 can reach the internet. On Linux 6.8, run <code class="mono">udhcpc -i eth0</code>
-		to get an address, then use <code class="mono">wget</code>. Mail ports and private networks are
-		blocked. The <a href="/terms">terms</a> list what the network may be used for.
+		TCP leaves through a relay this site runs on Cloudflare Workers. Mail ports and private networks
+		are blocked. The <a href="/terms">terms</a> list what the network may be used for.
 	</p>
 
 	<h2>Something does not work</h2>

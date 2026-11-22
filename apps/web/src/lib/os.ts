@@ -93,7 +93,7 @@ export const osList: RetroOS[] = [
 		license: 'GPL',
 		source: 'https://buildroot.org/',
 		note: 'A current Linux kernel with a BusyBox shell and networking tools, in a 10 MB image.',
-		hint: 'Log in as root with no password. Then try ip a, udhcpc -i eth0 and wget.',
+		hint: 'Log in as root, no password. Then run udhcpc -i eth0 and wget an http:// URL; https fails.',
 		engine: 'v86',
 		boot: {
 			bzimage: { url: `${IMAGES}buildroot-linux68.bin`, size: 10068480 },
