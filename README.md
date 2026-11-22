@@ -1,21 +1,52 @@
 # NecrOS
 
-A catalog of old operating systems that boot in a browser tab. Each machine runs in [v86](https://github.com/copy/v86), an x86 emulator compiled to WebAssembly.
+NecrOS is a catalog of old operating systems that boot in a browser tab. Each machine runs in [v86](https://github.com/copy/v86), an x86 emulator compiled to WebAssembly, with its own screen, sound, saved states and serial console.
 
-Static SvelteKit site (prerendered, no API) in a pnpm monorepo, deployed to Cloudflare with Alchemy v2. Design direction lives in [`DESIGN.md`](DESIGN.md).
+Live site: https://necros.kuncen.workers.dev
+
+The site is static SvelteKit: every route is prerendered and there is no API. It lives in a pnpm monorepo and deploys to Cloudflare with Alchemy v2. The design direction is in [`DESIGN.md`](DESIGN.md).
+
+## The catalog
+
+| Machine | Year | License | Download |
+|---|---|---|---|
+| FreeGEM | 1985 | GPL | 200 MB disk, loaded in parts |
+| PC-MOS/386 | 1987 | GPLv3 | 1.4 MB |
+| MS-DOS 4 | 1988 | MIT | 1.4 MB |
+| Oberon | 1990 | BSD-style | 24 MB |
+| FreeDOS | 1998 | GPL | 0.7 MB |
+| NewOS | 2001 | BSD-style | 1.4 MB |
+| Sanos | 2001 | BSD-style, GPL network drivers | 1.4 MB |
+| JX | 2002 | GPLv2 | 1.4 MB |
+| Plan 9 | 2002 | MIT | 15 MB |
+| Linux 2.6 | 2003 | GPL | 6.2 MB |
+| KolibriOS | 2004 | GPL | 1.4 MB |
+| Mobius | 2004 | MIT | 1.4 MB |
+| HelenOS | 2006 | BSD-3-Clause, GPL boot loader | 25 MB |
+| MikeOS | 2007 | BSD-style, some programs GPLv3 | 3.2 MB |
+| bootOS | 2019 | BSD-2-Clause | 360 KB |
+| bootBASIC | 2019 | BSD-2-Clause | 512 bytes |
+| bootRogue | 2019 | BSD-2-Clause | 512 bytes |
+| sectorforth | 2020 | MIT | 512 bytes |
+| SectorLISP | 2021 | ISC | 512 bytes |
+| Linux 6.8 | 2024 | GPL | 9.6 MB |
+
+[`apps/web/src/lib/os.ts`](apps/web/src/lib/os.ts) is the source of truth. Every year, maker, license and size on the site comes from there, and this table is a copy of it.
+
+## Layout
 
 ```
 apps/web          SvelteKit app (adapter-static, one HTML file per route)
-apps/web/static   v86 build files and the disk images in images/
+apps/web/static   v86 runtime files in v86/, disk images in images/
 apps/relay        Wisp relay Worker that gives networked machines real TCP connections
 alchemy.run.ts    Cloudflare deployment: the static site and the relay Worker
 ```
 
 ## Routes
 
-- `/` home page: the featured machine and a timeline of the catalog
-- `/os` catalog: every machine, oldest first
-- `/os/:slug` machine page: fills the window with no page scroll. `?boot=1` boots on load
+- `/`: the featured machine (the oldest in the catalog) and a timeline by year
+- `/os`: the catalog, oldest first
+- `/os/:slug`: the machine page. It fills the window with no page scroll, and `?boot=1` boots the machine on load
 - `/help`, `/about`, `/privacy`, `/terms`, `/licenses`
 
 ## Commands
@@ -23,8 +54,9 @@ alchemy.run.ts    Cloudflare deployment: the static site and the relay Worker
 ```sh
 pnpm install
 pnpm dev            # local dev server
-pnpm build          # static output in apps/web/build
 pnpm check          # svelte-check
+pnpm test           # vitest, with fast-check property tests for os.ts
+pnpm build          # static output in apps/web/build
 pnpm alchemy profile edit --add Cloudflare   # one-time login
 pnpm deploy         # build and deploy to Cloudflare
 pnpm destroy
@@ -32,16 +64,16 @@ pnpm destroy
 
 ## Adding a machine
 
-1. Put the disk image in `apps/web/static/images/`. Large hard disk images can be split into parts so a machine downloads only what it reads; set `partSize` on the `hda` entry.
-2. Add an entry to `osList` in `apps/web/src/lib/os.ts` with its year, maker, license, source URL, note, first-step hint, and boot config. Every value shown on its label comes from this entry.
+1. Check the license. The image must be redistributable: an open-source license, or a release that its rights holder made free to share. Abandonware does not qualify.
+2. Put the disk image in `apps/web/static/images/`. Cloudflare serves files up to 25 MiB. Larger hard disk images must be split into parts, with `partSize` set on the `hda` entry, so the machine downloads only what it reads.
+3. Add an entry to `osList` in `apps/web/src/lib/os.ts`: year, maker, license, source URL, note, first-step hint and boot config. For a GPL machine, the source URL must lead to its source code.
+4. Boot it locally and confirm the hint matches what the machine shows first.
 
-The catalog, the home timeline, and the prerendered `/os/:slug` page pick it up from there.
+The catalog, the home timeline, the licenses page and the prerendered `/os/:slug` page pick it up from there.
 
 ## Deployment
 
-Live site: https://necros.kuncen.workers.dev
-
-`pnpm deploy` asks for approval in a terminal. In a non-interactive shell, run `pnpm exec alchemy deploy --yes`. It deploys two Workers: `necros` (the static site) and `necros-relay`.
+`pnpm deploy` asks for approval in a terminal. In a non-interactive shell, run `pnpm exec alchemy deploy --yes`. It deploys two Workers: `necros` (the static site, served as Worker static assets) and `necros-relay`.
 
 ## Networking
 
@@ -81,7 +113,7 @@ Built during the Kiroween 2026 submission period. The following existed before a
 
 - The project started from a SvelteKit + Alchemy static-site starter template (monorepo layout, `alchemy.run.ts`, build config).
 - [v86](https://github.com/copy/v86) (BSD-2-Clause): the emulator package and the runtime files in `apps/web/static/v86/` (`v86.wasm`, SeaBIOS, VGA BIOS). License copy in `apps/web/static/v86/LICENSE`.
-- Disk images in `apps/web/static/images/` come from the v86 project's image collection. Each machine's license is listed on its label and in `apps/web/src/lib/os.ts`.
+- Disk images in `apps/web/static/images/` are unmodified copies from the v86 image collection. Where upstream publishes the same file, the copy was checked against it: PC-MOS/386, HelenOS, bootOS, bootBASIC and bootRogue match byte for byte. The MS-DOS 4 image holds files built in 2024 from Microsoft's MIT-licensed source. Each machine's license is in `os.ts` and on `/licenses`, and GPL machines link to their source.
 - Libraries: xterm.js (MIT) for the serial console, Lucide (ISC) for control icons, Gelasio and DM Mono (SIL OFL 1.1) via Fontsource.
 
 ## License
