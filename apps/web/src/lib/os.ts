@@ -99,6 +99,7 @@ export const osList: RetroOS[] = [
 			bzimage: { url: `${IMAGES}buildroot-linux68.bin`, size: 10068480 },
 			cmdline: 'tsc=reliable mitigations=off random.trust_cpu=on',
 			memoryMB: 128,
+			filesystem: true,
 			network: true
 		}
 	},
