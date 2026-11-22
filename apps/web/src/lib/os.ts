@@ -34,22 +34,6 @@ export type RetroOS = {
 
 export const osList: RetroOS[] = [
 	{
-		slug: 'unix-v7',
-		name: 'Unix V7',
-		kind: 'cli',
-		year: 1979,
-		maker: 'Bell Labs, ported to x86 by Robert Nordier',
-		license: 'Caldera BSD-style',
-		source: 'https://www.nordier.com/v7x86/',
-		note: 'Seventh Edition Unix from Bell Labs, with the original Bourne shell, ed and cc.',
-		hint: 'Log in as guest with no password. To become root, run su and enter password.',
-		engine: 'v86',
-		boot: {
-			hda: { url: `${IMAGES}unix-v7x86-0.8a/.img`, size: 152764416, partSize: 262144 },
-			memoryMB: 64
-		}
-	},
-	{
 		slug: 'freedos',
 		name: 'FreeDOS',
 		kind: 'cli',
@@ -165,19 +149,211 @@ export const osList: RetroOS[] = [
 		}
 	},
 	{
-		slug: 'xwoaf',
-		name: 'xwoaf',
+		slug: 'pcmos386',
+		name: 'PC-MOS/386',
+		kind: 'cli',
+		year: 1987,
+		maker: 'The Software Link',
+		license: 'GPLv3',
+		source: 'https://github.com/roelandjansen/pcmos386v501',
+		note: 'A multi-user DOS that let several terminals share one 386. This is version 5.01, opened under the GPL in 2017.',
+		hint: 'Press Enter to keep the date and time, then type dir.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}pcmos386-501.img`, size: 1474560 },
+			memoryMB: 64
+		}
+	},
+	{
+		slug: 'newos',
+		name: 'NewOS',
+		kind: 'cli',
+		year: 2001,
+		maker: 'Travis Geiselbrecht',
+		license: 'BSD-style',
+		source: 'https://newos.org/',
+		note: 'A kernel written by a former Be engineer, which the Haiku project forked to build its own kernel.',
+		hint: 'At the shell prompt, type ls /boot/bin, then try fortune. The kernel log runs in the serial console.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}newos.img`, size: 1474560 },
+			memoryMB: 64
+		}
+	},
+	{
+		slug: 'sanos',
+		name: 'Sanos',
+		kind: 'cli',
+		year: 2001,
+		maker: 'Michael Ringgaard',
+		license: 'BSD-style, GPL network drivers',
+		source: 'https://github.com/ringgaard/sanos',
+		note: 'A small kernel for server appliances that loads Windows PE programs and can run the Sun Java VM.',
+		hint: 'Press Enter for the /$ prompt between the DHCP messages, then type help.',
+		engine: 'v86',
+		boot: {
+			hda: { url: `${IMAGES}sanos.img`, size: 1474560 },
+			memoryMB: 128
+		}
+	},
+	{
+		slug: 'jx',
+		name: 'JX',
+		kind: 'desktop',
+		year: 2002,
+		maker: 'University of Erlangen-Nuremberg',
+		license: 'GPLv2',
+		source: 'https://sourceforge.net/projects/jxos/',
+		note: 'An operating system written in Java, where type-safe code takes the place of hardware memory protection.',
+		hint: 'Wait for the window manager to open its windows, then click the screen to capture the mouse.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}jx-demo.img`, size: 1474560 },
+			memoryMB: 128
+		}
+	},
+	{
+		slug: 'plan9',
+		name: 'Plan 9',
+		kind: 'cli',
+		year: 2002,
+		maker: 'Bell Labs, patched by the 9legacy project',
+		license: 'MIT',
+		source: 'https://9legacy.org/',
+		note: 'The Bell Labs successor to Unix, where every resource, even the network, is a file. This is the Fourth Edition with 9legacy patches.',
+		hint: 'At the startup menu, type 4 and press Enter to reach the rc shell.',
+		engine: 'v86',
+		boot: {
+			hda: { url: `${IMAGES}9legacy.img`, size: 16000000 },
+			memoryMB: 512
+		}
+	},
+	{
+		slug: 'mobius',
+		name: 'Mobius',
 		kind: 'desktop',
 		year: 2004,
-		maker: 'Terry Loveall, rebuilt by the Puppy Linux community',
-		license: 'GPL',
-		source: 'https://oldforum.puppylinux.com/viewtopic.php?t=109062',
-		note: 'X Window On A Floppy: a Linux desktop with windows and apps in about 2 MB.',
+		maker: 'Tim Robinson',
+		license: 'MIT',
+		source: 'https://sourceforge.net/projects/mobius/',
+		note: 'Release 5 of a hobby operating system for the 386, which boots from one floppy into a graphical screen.',
+		hint: 'Wait for the graphical screen, then click it to capture the mouse.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}mobius-release5.img`, size: 1474560 },
+			memoryMB: 64
+		}
+	},
+	{
+		slug: 'helenos',
+		name: 'HelenOS',
+		kind: 'desktop',
+		year: 2006,
+		maker: 'HelenOS developers, started at Charles University in Prague',
+		license: 'BSD-3-Clause, GPL boot loader',
+		source: 'https://www.helenos.org/',
+		note: 'A microkernel system where drivers and file systems run as separate programs. This is release 0.14.1.',
 		hint: 'Wait for the desktop, then click the screen to capture the mouse.',
 		engine: 'v86',
 		boot: {
-			cdrom: { url: `${IMAGES}xwoaf_rebuild4.iso`, size: 2205696 },
+			cdrom: { url: `${IMAGES}helenos-0.14.1-ia32.iso`, size: 25792512 },
 			memoryMB: 256
+		}
+	},
+	{
+		slug: 'mikeos',
+		name: 'MikeOS',
+		kind: 'cli',
+		year: 2007,
+		maker: 'Mike Saunders and the MikeOS developers',
+		license: 'BSD-style, some programs GPLv3',
+		source: 'https://mikeos.sourceforge.net/',
+		note: 'A 16-bit teaching operating system written in assembly, with its own BASIC interpreter. This is version 4.7.0.',
+		hint: 'Press Enter at the first dialog to open the program menu.',
+		engine: 'v86',
+		boot: {
+			cdrom: { url: `${IMAGES}mikeos-4.7.0.iso`, size: 3311616 },
+			memoryMB: 64
+		}
+	},
+	{
+		slug: 'bootos',
+		name: 'bootOS',
+		kind: 'cli',
+		year: 2019,
+		maker: 'Oscar Toledo G.',
+		license: 'BSD-2-Clause',
+		source: 'https://github.com/nanochess/bootOS',
+		note: 'An operating system in one 512-byte boot sector that can load, run and save programs.',
+		hint: 'At the $ prompt, type dir, then type a program name such as fbird to run it.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}bootos-all.img`, size: 368640 },
+			memoryMB: 32
+		}
+	},
+	{
+		slug: 'bootbasic',
+		name: 'bootBASIC',
+		kind: 'cli',
+		year: 2019,
+		maker: 'Oscar Toledo G.',
+		license: 'BSD-2-Clause',
+		source: 'https://github.com/nanochess/bootBASIC',
+		note: 'An integer BASIC interpreter that fits in one 512-byte boot sector.',
+		hint: 'Type print 2+2 and press Enter. Statements must be in lowercase.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}bootbasic.img`, size: 512 },
+			memoryMB: 32
+		}
+	},
+	{
+		slug: 'bootrogue',
+		name: 'bootRogue',
+		kind: 'cli',
+		year: 2019,
+		maker: 'Oscar Toledo G.',
+		license: 'BSD-2-Clause',
+		source: 'https://github.com/nanochess/bootRogue',
+		note: 'A roguelike game in 510 bytes, with monsters, traps and the Amulet of Yendor 26 levels down.',
+		hint: 'Move with the arrow keys, and walk into a monster to fight it.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}bootrogue.img`, size: 512 },
+			memoryMB: 32
+		}
+	},
+	{
+		slug: 'sectorforth',
+		name: 'sectorforth',
+		kind: 'cli',
+		year: 2020,
+		maker: 'Cesar Blum',
+		license: 'MIT',
+		source: 'https://github.com/cesarblum/sectorforth',
+		note: 'A Forth in one 512-byte boot sector, with eight primitives and no built-in numbers.',
+		hint: 'Type key emit and press Enter, then press any letter to see it printed.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}sectorforth.img`, size: 512 },
+			memoryMB: 32
+		}
+	},
+	{
+		slug: 'sectorlisp',
+		name: 'SectorLISP',
+		kind: 'cli',
+		year: 2021,
+		maker: 'Justine Tunney and contributors',
+		license: 'ISC',
+		source: 'https://github.com/jart/sectorlisp',
+		note: "A LISP in one 512-byte boot sector, able to run John McCarthy's meta-circular evaluator.",
+		hint: 'Type (CONS (QUOTE A) (QUOTE B)) in capitals and press Enter.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}sectorlisp-friendly.bin`, size: 512 },
+			memoryMB: 32
 		}
 	}
 ];

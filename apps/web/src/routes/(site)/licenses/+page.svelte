@@ -27,6 +27,11 @@
 		Every machine and library in NecrOS keeps its own license. The source of each one is linked
 		below. The code of this site is MIT licensed and lives on <a href={repoUrl}>GitHub</a>.
 	</p>
+	<p>
+		The disk images are unmodified copies from the v86 image collection, or from each project's own
+		releases. For machines under the GPL, the complete source code is available at the source address
+		listed for that machine.
+	</p>
 </article>
 
 <section aria-labelledby="machines-title">
