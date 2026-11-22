@@ -3,7 +3,7 @@ import * as Cloudflare from "@alchemy.run/cloudflare";
 import * as Effect from "effect/Effect";
 
 // Public address of the relay Worker below, baked into the site at build time.
-const NET_RELAY = "wss://necros-relay.kuncen.workers.dev";
+const NET_RELAY = "wisps://necros-relay.kuncen.workers.dev";
 
 export default Alchemy.Stack(
   "Hackathon",

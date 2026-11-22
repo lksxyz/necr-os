@@ -81,7 +81,7 @@ Machines with `network: true` (Linux 2.6, Linux 6.8) can open real TCP connectio
 
 - The relay address is set once in `alchemy.run.ts` (`NET_RELAY`) and passed to the site build as `VITE_NET_RELAY`.
 - The relay only accepts connections from origins listed in `ALLOWED_ORIGINS` in `apps/relay/worker.ts`.
-- For `pnpm dev`, put `VITE_NET_RELAY=wss://necros-relay.kuncen.workers.dev` in `apps/web/.env`. `localhost:5173` is already allowed.
+- For `pnpm dev`, put `VITE_NET_RELAY=wisps://necros-relay.kuncen.workers.dev` in `apps/web/.env`. `localhost:5173` is already allowed. The `wisps://` scheme selects v86's Wisp backend; `wss://` selects its wsproxy backend, which speaks a different protocol.
 - Optional: `VITE_CORS_PROXY` sets a CORS proxy for v86's fetch-based network.
 
 Without `VITE_NET_RELAY`, v86 falls back to its fetch-based network, which only handles HTTP.
