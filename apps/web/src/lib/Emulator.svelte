@@ -166,6 +166,8 @@
 
 	const NET_RELAY = import.meta.env.VITE_NET_RELAY as string | undefined;
 	const CORS_PROXY = import.meta.env.VITE_CORS_PROXY as string | undefined;
+	// v86 adds no network card when the type is neither ne2k nor virtio. Its typings list only those two.
+	const NO_NETWORK_CARD = { type: 'none' } as unknown as { type: 'ne2k' };
 
 	async function boot() {
 		if (!container || phase === 'loading' || phase === 'running') return;
@@ -195,7 +197,11 @@
 				bzimage: b.bzimage ? { ...b.bzimage, async: false } : undefined,
 				cmdline: b.cmdline,
 				filesystem: b.filesystem ? {} : undefined,
-				net_device: b.network ? { type: 'ne2k', relay_url: NET_RELAY ?? 'fetch', cors_proxy: CORS_PROXY } : undefined,
+				net_device: b.network
+					? { type: 'ne2k', relay_url: NET_RELAY ?? 'fetch', cors_proxy: CORS_PROXY }
+					: b.networkCard === false
+						? NO_NETWORK_CARD
+						: undefined,
 				autostart: true
 			});
 

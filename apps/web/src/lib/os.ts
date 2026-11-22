@@ -16,6 +16,8 @@ export type BootConfig = {
 	memoryMB: number;
 	filesystem?: boolean;
 	network?: boolean;
+	/** Set to false to boot with no network card, for systems that wait on DHCP. */
+	networkCard?: boolean;
 };
 
 export type RetroOS = {
@@ -189,11 +191,12 @@ export const osList: RetroOS[] = [
 		license: 'BSD-style, GPL network drivers',
 		source: 'https://github.com/ringgaard/sanos',
 		note: 'A small kernel for server appliances that loads Windows PE programs and can run the Sun Java VM.',
-		hint: 'Press Enter for the /$ prompt between the DHCP messages, then type help.',
+		hint: 'At the /$ prompt, type ls /bin to list the programs.',
 		engine: 'v86',
 		boot: {
 			hda: { url: `${IMAGES}sanos.img`, size: 1474560 },
-			memoryMB: 128
+			memoryMB: 128,
+			networkCard: false
 		}
 	},
 	{
