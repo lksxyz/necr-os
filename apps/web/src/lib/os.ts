@@ -168,6 +168,22 @@ export const osList: RetroOS[] = [
 		}
 	},
 	{
+		slug: 'elks',
+		name: 'ELKS',
+		kind: 'cli',
+		year: 1995,
+		maker: 'Alan Cox, Chad Page and the ELKS developers',
+		license: 'GPL',
+		source: 'https://github.com/ghaerr/elks',
+		note: 'A fork of early Linux for 16-bit 8086 machines with no memory protection. It began as Linux-8086. This is release 0.9.2.',
+		hint: 'Log in as root with no password, then try ls /bin.',
+		engine: 'v86',
+		boot: {
+			fda: { url: `${IMAGES}elks-fd1440-fat.img`, size: 1474560 },
+			memoryMB: 32
+		}
+	},
+	{
 		slug: 'newos',
 		name: 'NewOS',
 		kind: 'cli',
